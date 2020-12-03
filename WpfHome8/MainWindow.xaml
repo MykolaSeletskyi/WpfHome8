@@ -1,0 +1,88 @@
+﻿<Window x:Class="WpfHome8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfHome8"
+        mc:Ignorable="d"
+        Title="MainWindow"  Height="200" Width="350" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style x:Key="StyleTextAndPasswordBox" TargetType="{x:Type Control}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Border BorderBrush="LightGray" Background="Gray" BorderThickness="0,3,0,3" CornerRadius="8">
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="5,0" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="15"  Background="{TemplateBinding Background}" Padding="5">
+                        <ContentPresenter HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    </Window.Resources>
+    <DockPanel Background="#3b3b3b" LastChildFill="False">
+        <Grid Margin="5" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label >Username:</Label>
+            <TextBox  Height="30" Grid.Column="1" Margin="5" Style="{StaticResource StyleTextAndPasswordBox}"></TextBox>
+            <Label Grid.Row="1" Margin="5">Password:</Label>
+            <PasswordBox Height="30"  Grid.Row="1" Grid.Column="1" Margin="5" Style="{StaticResource StyleTextAndPasswordBox}"></PasswordBox>
+        <CheckBox Content="Remember Me" Foreground="White" Grid.Row="2" Grid.Column="1">
+            <CheckBox.Template>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <DockPanel>
+                        <Border Width="15" Height="15" Margin="0,0,3,0"
+      Background="Gray" VerticalAlignment="Top"
+      BorderBrush="LightGray" BorderThickness="2" CornerRadius="2">
+                            <Border Name="check"
+       Visibility="Hidden"
+       Width="8" Height="8"
+       Background="LightGray"
+       CornerRadius="50"/>
+                        </Border>
+                        <ContentPresenter></ContentPresenter>
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="check"
+       Property="Visibility"
+       Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </CheckBox.Template>
+        </CheckBox>
+        </Grid>
+        <Grid Margin="5" Width="240" DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Margin="5" Background="Red" HorizontalContentAlignment="Right" Grid.Column="1">Cancel</Button>
+            <Button Margin="5" Background="Green" >Log In</Button>
+        </Grid>
+    </DockPanel>
+    </Window>
